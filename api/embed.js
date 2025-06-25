@@ -1,7 +1,11 @@
-export default function handler(req, res) {
+import express from 'express';
+
+const app = express();
+
+app.get('*', (req, res) => {
   res.setHeader('Content-Type', 'application/javascript');
   res.end(`
-    // --- embed.js served from Vercel ---
+    // --- embed.js served from Express on Vercel ---
     (function () {
       const box = document.createElement('div');
       box.id = 'demo-chatbot';
@@ -17,4 +21,6 @@ export default function handler(req, res) {
       document.head.appendChild(s);
     })();
   `);
-}
+});
+
+export default app;
